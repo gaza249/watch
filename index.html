@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    <span id="time"></span>
+
+   <div class="zero">
+    <div class="calander">
+        <div class="left">
+          <p id="date">01</p>
+          <p id="day">Monday</p>
+         
+        </div>
+        <div class="right">
+          <p id="month">January</p>
+          <p id="year">2023</p>
+        </div>
+        
+      </div>
+   </div> 
+
+<script>
+
+const dateElement = document.getElementById("date");
+const dayElement = document.getElementById("day");
+const timeElement = document.getElementById("time");
+const monthElement = document.getElementById("month");
+const yearElement = document.getElementById("year");
+
+const today = new Date();
+
+const weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+dateElement.innerHTML = (today.getDate() < 10 ? "0" : "") + today.getDate();
+dayElement.innerHTML = weekdays[today.getDay()];
+monthElement.innerHTML = months[today.getMonth()];
+yearElement.innerHTML = today.getFullYear();
+
+
+function updateTime() {
+  const now = new Date();
+  const hours = now.getHours();
+  const minutes = now.getMinutes();
+  const seconds = now.getSeconds();
+
+  // Add leading zeros if necessary
+  const formattedHours = hours < 10 ? `0${hours}` : hours;
+  const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes;
+  const formattedSeconds = seconds < 10 ? `0${seconds}` : seconds;
+
+  timeElement.innerHTML = `${formattedHours}:${formattedMinutes}:${formattedSeconds}`;
+}
+
+setInterval(updateTime, 1000); // Update the time every second
+
+
+
+</script>
+</body>
+</html>
